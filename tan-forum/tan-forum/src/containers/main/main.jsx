@@ -182,6 +182,7 @@ class Mains extends Component{
     }
 
     render(){
+        //console.log(this.props);
         const { getFieldDecorator } = this.props.form;
         // 如果用户没有cookie则未登录，跳转登录页面
         const userid = Cookies.get('user_id');

@@ -52,7 +52,7 @@ class PersonalPosts extends Component{
                 console.log(values);
                 this.props.addComments(values);
                 //this.props.getCommentsById(values.postid);
-                this.props.getPostsById(values.postid);
+                //this.props.getPostsById(values.postid);
                 //this.props.changeOnce();
                 this.props.replace(values.postid);
 
