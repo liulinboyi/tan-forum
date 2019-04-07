@@ -28,9 +28,13 @@ class ChangePsw extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+
                 this.props.updateUser({password:values.password1});
-                Cookies.remove('user_id');
-                return <Redirect to='/login'/>
+                setTimeout(()=>{
+                    Cookies.remove('user_id');
+                },2000);
+
+                this.props.tologin();
 
             }
         });

@@ -150,8 +150,8 @@ exports.resetuser = async (request,h)=>{
 
         UserModel.updateOne({_id:userid},{password:md5(password)},function (error,user) {
             if(user){
-                const data = {userid};
-                return resolve({code:0,data:data});
+                h.unstate('user_id');
+                return resolve({code:0,msg:"修改成功"});
             }else{
                 return resolve({code:1,msg:'用户不存在'});
             }

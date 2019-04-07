@@ -99,6 +99,9 @@ class Mains extends Component{
         //this.props.history.go('/getpostsbyId/'+href);
         //this.props.getPostsById(href);
     };
+    tologin=()=>{
+        this.props.history.replace('/login');
+    }
 
 
 
@@ -259,7 +262,7 @@ class Mains extends Component{
                                         />
                                     </Route>
                                     <Route path='/ChangePsw'>
-                                        <ChangePsw updateUser={this.props.updateUser}/>
+                                        <ChangePsw tologin={this.tologin} updateUser={this.props.updateUser}/>
                                     </Route>
 
                                 </Switch>
