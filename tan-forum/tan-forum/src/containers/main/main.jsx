@@ -37,7 +37,6 @@ class Mains extends Component{
         this.handleCancel = this.handleCancel.bind(this);
         this.showModal = this.showModal.bind(this);
         this.handleOk = this.handleOk.bind(this);
-        this.showConfirm = this.showConfirm.bind(this);
     }
     showModal = () => {
         this.setState({
@@ -48,20 +47,7 @@ class Mains extends Component{
         this.setState({title:'1111'}
         )
     };
-    showConfirm=() =>{
-        confirm({
-            title: '确定？',
-            content: '您确定要退出吗？',
-            onOk() {
-                Cookies.remove('user_id');
-                //this.history.replace('/login')
-                //window.location.href('/login')
-            },
-            onCancel() {
-                console.log('Cancel');
-            },
-        });
-    }
+
     //发帖子
     handleOk = (e) => {
 
@@ -170,16 +156,16 @@ class Mains extends Component{
 
 
    }
-    componentWillUnmount() {
-        const pathPost = this.props.location.pathname;     //文章id
-        const comparepath = pathPost.slice(0, 14);
-        if (comparepath === '/getpostsbyId/') {
-            console.log('s');
-            const postId = pathPost.slice(14);
-            this.props.getPostsById(postId);
-            this.props.getCommentsById(postId);
-        }
-    }
+    // componentWillUnmount() {
+    //     const pathPost = this.props.location.pathname;     //文章id
+    //     const comparepath = pathPost.slice(0, 14);
+    //     if (comparepath === '/getpostsbyId/') {
+    //         console.log('ls');
+    //         const postId = pathPost.slice(14);
+    //         this.props.getPostsById(postId);
+    //         this.props.getCommentsById(postId);
+    //     }
+    // }
 
     render(){
         //console.log(this.props);
@@ -188,8 +174,8 @@ class Mains extends Component{
         const userid = Cookies.get('user_id');
         if(!userid){
             notification.open({
-                message: '成功退出！',
-                description: '您已经成功退出登录，请您再重新登录！',
+                message: '您现在是未登录状态！',
+                description: '您现在是未登录状态，请您再重新登录！',
                 icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
             });
             return <Redirect to='/login'/>
@@ -261,7 +247,10 @@ class Mains extends Component{
                                     </Menu.Item>
                                     <SubMenu key="sub1" title={<span><Icon type="user" />个人中心</span>}>
                                         <Menu.Item onClick={()=>this.props.history.replace('/changepsw')} key="3">修改密码</Menu.Item>
-                                        <Menu.Item onClick={this.showConfirm} key="4">
+                                        <Menu.Item onClick={()=>{
+                                            Cookies.remove('user_id');
+                                            this.props.history.replace('./login')
+                                        }} key="4">
                                                退出登录
                                         </Menu.Item>
                                     </SubMenu>
