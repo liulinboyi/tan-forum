@@ -35,7 +35,7 @@ const swaggerOptions = {
 
 
 
-// good 插件
+// good 插件    通访问日志
 const options = {
     ops: {
         interval: 1000

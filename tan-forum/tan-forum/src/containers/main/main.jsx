@@ -14,7 +14,6 @@ import {connect} from "react-redux";
 import {
     Layout, Menu, Breadcrumb, Icon, Modal, Button, Input, Form, Avatar,notification
 } from 'antd';
-const confirm = Modal.confirm;
 const { TextArea } = Input;
 const { SubMenu } = Menu;
 const {
@@ -52,7 +51,7 @@ class Mains extends Component{
     handleOk = (e) => {
 
         const pathPost = this.props.location.pathname;
-        const comparepath = pathPost.slice(0,14)
+        const comparepath = pathPost.slice(0,14);
 
         if(comparepath==='/getpostsbyId/'){
             //console.log('s');
@@ -81,7 +80,7 @@ class Mains extends Component{
             });
         };
         callback();
-    }
+    };
 
     pageNavigate (path) {
         setTimeout(() => {
@@ -95,24 +94,13 @@ class Mains extends Component{
     //替换路径实现回复功能
     replace = (href)=>{
         this.props.history.replace('/getpostsbyId/'+href);
-        this.props.history.go('/getpostsbyId/'+href);
-        this.props.getPostsById(href);
+        const userid = Cookies.get('user_id');
+        this.props.getUser(userid);
+        //this.props.history.go('/getpostsbyId/'+href);
+        //this.props.getPostsById(href);
     };
 
-    /*shouldComponentUpdate(nextProps, nextState){
-        const pathPost = this.props.location.pathname;
-        const userid = Cookies.get('user_id');
-        const {user} = this.props;
-        if(pathPost==='/getpostbyusername'){
-            if((!user.username)){
-                this.props.getPostsByUsername(nextProps.user.username);
-                return true;
-            }
-        }else{
-            return false;
-        }
 
-    }*/
 
     componentDidMount() {
 
@@ -130,9 +118,7 @@ class Mains extends Component{
         if(!user.username){
             this.props.getUser(userid);
         }
-        //console.log(user);
-        //console.log(pathPost);
-        //如果挂载完之后页面无信息则获取相关信息
+
         if(comparepath ==='/getpostsbyId/'){
             console.log('s');
             const postId = pathPost.slice(14);
@@ -156,16 +142,7 @@ class Mains extends Component{
 
 
    }
-    // componentWillUnmount() {
-    //     const pathPost = this.props.location.pathname;     //文章id
-    //     const comparepath = pathPost.slice(0, 14);
-    //     if (comparepath === '/getpostsbyId/') {
-    //         console.log('ls');
-    //         const postId = pathPost.slice(14);
-    //         this.props.getPostsById(postId);
-    //         this.props.getCommentsById(postId);
-    //     }
-    // }
+
 
     render(){
         //console.log(this.props);
@@ -181,9 +158,6 @@ class Mains extends Component{
             return <Redirect to='/login'/>
         }
         const {user} = this.props;
-        if(!user._id){
-            return null;
-        }
 
 
         var { visible, loading } = this.state;
@@ -199,18 +173,6 @@ class Mains extends Component{
         if(comparepath==='/getpostsbyId/'){
             var comments = this.props.comments.commentDoc;
         }
-        if(pathPost==='/getpostbyusername')
-        {
-            if (!posts) {
-                this.props.getPostsByUsername(user.username);
-            }
-        }
-        //var comments = this.props.comments.commentDoc;
-        //console.log(posts);
-
-        //console.log(postId);
-        //console.log(pathPost);
-        //console.log(posts);
         return(
             <div>
                 <Layout>

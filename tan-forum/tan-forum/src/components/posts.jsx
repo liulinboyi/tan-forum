@@ -17,12 +17,7 @@ const IconText = ({ type, text }) => (
 
 export default  class Posts extends Component{
 
-    componentDidMount() {
 
-
-        //this.props.getPostById()
-
-    }
 
     render(){
         const data = this.props.posts;

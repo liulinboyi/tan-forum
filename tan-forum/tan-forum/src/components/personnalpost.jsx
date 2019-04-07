@@ -51,8 +51,8 @@ class PersonalPosts extends Component{
                 values.postid = data[0]._id;
                 console.log(values);
                 this.props.addComments(values);
-                //this.props.getCommentsById(values.postid);
-                //this.props.getPostsById(values.postid);
+                this.props.getCommentsById(values.postid);
+                this.props.getPostsById(values.postid);
                 //this.props.changeOnce();
                 this.props.replace(values.postid);
 
