@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import {Redirect} from "react-router-dom";
 import Cookies from 'js-cookie';
 import {
     Layout,  Card , Form, Input, Icon,Button,message

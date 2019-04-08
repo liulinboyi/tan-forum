@@ -131,6 +131,9 @@ class Mains extends Component{
             if(!user.username){
 
                 this.props.getUser(userid);
+                this.props.getPostsByUsername(this.props.username);
+            }else{
+                this.props.getPostsByUsername(this.props.username);
             }
 
 
