@@ -76,7 +76,7 @@ const init = async () => {
     });
     await server.register(require('hapi-auto-route'));    //路由插件
 
-    await server.register(hapiBoomDecorators); // boom 插件
+    await server.register(hapiBoomDecorators); // boom 插件 错误处理
 
     await server.register([    //api 插件
         Inert,

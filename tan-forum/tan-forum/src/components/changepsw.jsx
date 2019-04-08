@@ -28,13 +28,15 @@ class ChangePsw extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-
+                const hide = message.loading('修改成功，请稍等', 0);
+                // Dismiss manually and asynchronously
+                setTimeout(hide, 2000);
                 this.props.updateUser({password:values.password1});
                 setTimeout(()=>{
                     Cookies.remove('user_id');
-                },2000);
+                    this.props.tologin();
+                },1000);
 
-                this.props.tologin();
 
             }
         });
